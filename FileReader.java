@@ -1,3 +1,12 @@
+/*Universidad del Valle de Guatemala
+ * Algoritmos y Programacion Basica, seccion 20
+ * Fecha de entrega: 09/04/2022
+ * @author:Andrea Ximena Ramirez Recinos 21874
+ * 
+ * Programa que simula un diccionario, aplicacion de BST
+ * Clase para leer archivos
+ * 
+ */
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

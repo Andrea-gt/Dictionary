@@ -1,6 +1,15 @@
 import java.util.ArrayList;
-import java.util.Comparator;
 
+import java.util.Comparator;
+/*Universidad del Valle de Guatemala
+ * Algoritmos y Programacion Basica, seccion 20
+ * Fecha de entrega: 09/04/2022
+ * @author:Andrea Ximena Ramirez Recinos 21874
+ * 
+ * Programa que simula un diccionario, aplicacion de BST
+ * Clase BST
+ * 
+ */
 /**
  * @author MAAG
  *
@@ -11,6 +20,9 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 	private TreeNode<K, V> root;
 	private Comparator<K> keyComparator;
 	
+	/**Constructor
+	 * @param _keyComparator
+	 */
 	public BinarySearchTree(Comparator<K> _keyComparator) {
 		this.keyComparator = _keyComparator;
 		root = null;
@@ -18,6 +30,9 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 	}
 	
 
+	/**
+	 * Metodo para insertar elementos
+	 */
 	@Override
 	public void insert(K id, V value) {
 		
@@ -28,7 +43,9 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 			internalInsert(root, id, value);
 		}
 	}
-
+	/**
+	 * Metodo para borrar elementos del BST
+	 */
 	@Override
 	public V delete(K id) {
 		if (!isEmpty()) {
@@ -142,7 +159,9 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 		
 		return null;
 	}
-
+	/**
+	 * Metodo para hallar elementos dentro del BST
+	 */
 	@Override
 	public V find(K id) {
 		return internalFind(root, id);
@@ -158,6 +177,9 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 		return count == 0;
 	}
 
+	/**Metodo para obetener los elementos contenidos en el BST
+	 *return list
+	 */
 	@Override
 	public ArrayList<V> getElements() {
 		ArrayList<V> list = new ArrayList<V>();
@@ -167,23 +189,35 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 		return list;
 	}
 
-	@Override
+	/**
+	 * Metodo para ordenar los elementos del BST InOrder 
+	 */
 	public void inOrder(ITreeTraversal<V> traversal) {
 		internalInOrder(root, traversal);
 	}
 
 	@Override
+	/**
+	 * Metodo para ordenar los elementos del BST preOrder 
+	 */
 	public void preOrder(ITreeTraversal<V> traversal) {
 		internalPreOrder(root, traversal);
 		
 	}
-
+	/**
+	 * Metodo para ordenar los elementos del BST postOrder 
+	 */
 	@Override
 	public void postOrder(ITreeTraversal<V> traversal) {
 		internalPostOrder(root, traversal);
 	}
 	
 
+	/**
+	 * @param actual
+	 * @param id
+	 * @param value
+	 */
 	private void internalInsert(TreeNode<K, V> actual, K id, V value) {
 		
 		int result = keyComparator.compare(actual.getId(), id);
@@ -212,6 +246,10 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 		
 	}
 	
+	/**
+	 * @param actual
+	 * @param traversal
+	 */
 	private void internalInOrder(TreeNode<K, V> actual, ITreeTraversal<V> traversal) {
 		if (actual != null) {
 			internalInOrder(actual.getLeft(), traversal);
@@ -222,6 +260,10 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 		}
 	}
 	
+	/**
+	 * @param actual
+	 * @param traversal
+	 */
 	private void internalPreOrder(TreeNode<K, V> actual, ITreeTraversal<V> traversal) {
 		if (actual != null) {
 			traversal.Walk(actual.getValue());
@@ -232,6 +274,10 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 		}
 	}
 	
+	/**
+	 * @param actual
+	 * @param traversal
+	 */
 	private void internalPostOrder(TreeNode<K, V> actual, ITreeTraversal<V> traversal) {
 		if (actual != null) {
 		
@@ -243,6 +289,11 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 		}
 	}
 	
+	/**
+	 * @param actual
+	 * @param id
+	 * @return value/null
+	 */
 	private V internalFind(TreeNode<K, V> actual, K id) {
 		if (actual != null) {
 			int result = keyComparator.compare(actual.getId(), id);
@@ -260,6 +311,10 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 		}
 	}
 	
+	/**
+	 * @param list
+	 * @param actual
+	 */
 	private void internalGetElements(ArrayList<V> list, TreeNode<K, V> actual) {
 		if (actual != null) {
 			internalGetElements(list, actual.getLeft());
@@ -270,6 +325,12 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 		}
 	}
 	
+	/**
+	 * @param actual
+	 * @param id
+	 * @param isLeft
+	 * @return
+	 */
 	private V internalDelete(TreeNode<K, V> actual, K id, boolean isLeft) {
 		if (actual != null) {
 			int result = keyComparator.compare(actual.getId(), id);

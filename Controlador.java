@@ -2,6 +2,15 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/*Universidad del Valle de Guatemala
+ * Algoritmos y Programacion Basica, seccion 20
+ * Fecha de entrega: 09/04/2022
+ * @author:Andrea Ximena Ramirez Recinos 21874
+ * 
+ * Programa que simula un diccionario, aplicacion de BST
+ * Clase Controlador
+ * 
+ */
 public class Controlador {
 	private BinarySearchTree<String, String> ingles = new BinarySearchTree<String, String>(new WordComparator());
 	private BinarySearchTree<String, String> frances = new BinarySearchTree<String, String>(new WordComparator());
@@ -10,6 +19,9 @@ public class Controlador {
 	private ArrayList<String> lines = new ArrayList<String>();
 	private ArrayList<String> secondaryLines = new ArrayList<String>();
 
+	/**
+	 * Metodo encargado de ingresar las palabras iniciales al diccionario
+	 */
 	public void EstablishingWords() {
 		try {
 			lines = fr.readingFile("diccionario.txt");
@@ -25,6 +37,10 @@ public class Controlador {
 	}
 }
 
+/**Metodo encargado de buscar las palabras en los diccionarios
+ * @param key
+ * @return la palabra en espanol
+ */
 public String SearchWord(String key) {
 	if(ingles.find(key) != null) {
 		return (String) ingles.find(key);
@@ -44,6 +60,12 @@ public ArrayList<String> getFrances() {
 	return frances.getElements();
 }
 
+/** Metodo encarcago de agregar palabras al diccionario
+ * @param addWord
+ * @param addWordTrad
+ * @param addWordL
+ * @return String
+ */
 public String addWord(String addWord, String addWordTrad, String addWordL) {
 	if(addWordL.equals("f")) {
 		frances.insert(addWordTrad, addWord);
@@ -58,6 +80,10 @@ public String addWord(String addWord, String addWordTrad, String addWordL) {
 	return "Ha ocurrido un error agregando la palabra " + addWord;
 }
 
+/** Metodo para modificar palabras
+ * @param editWord
+ * @param inSpanish
+ */
 public void editWord(String editWord, String inSpanish) {
 	if(ingles.find(editWord) != null) {
 		ingles.delete(editWord);
@@ -76,6 +102,9 @@ public void editWord(String editWord, String inSpanish) {
 	}
 }
 
+/** Metodo para eliminar palabras de los diccionarios
+ * @param searchWorsElim
+ */
 public void eliminateWord(String searchWorsElim) {
 	if(ingles.find(searchWorsElim) != null) {
 		ingles.delete(searchWorsElim);
@@ -88,9 +117,12 @@ public void eliminateWord(String searchWorsElim) {
 	}	
 }
 
-public void readingTxt(){
+/** Metodo para traducir el .txt
+ * @param fileName
+ */
+public void readingTxt(String fileName){
 	try {
-		secondaryLines = secondaryFR.readingFile("texto.txt");
+		secondaryLines = secondaryFR.readingFile("fileName");
 		for (int i = 0; i < secondaryLines.size(); i++){
 			String [] tempArray = secondaryLines.get(i).split(" ");
 			for (int j = 0; j < tempArray.length; j++){	

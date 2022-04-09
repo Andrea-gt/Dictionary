@@ -1,3 +1,13 @@
+/*Universidad del Valle de Guatemala
+ * Algoritmos y Programacion Basica, seccion 20
+ * Fecha de entrega: 09/04/2022
+ * @author:Andrea Ximena Ramirez Recinos 21874
+ * 
+ * Programa que simula un diccionario, aplicacion de BST
+ * Clase main
+ * 
+ */
+
 import java.util.Scanner;
 public class MainClass {
 
@@ -72,7 +82,9 @@ public class MainClass {
 				break;
 				
 			case 5:
-				ctr.readingTxt();
+				System.out.println("Porfavor, ingrese el nombre del archivo ");
+				String fileName = sn.nextLine();
+				ctr.readingTxt(fileName);
 				break;
 			case 6:
 				System.out.println("Cerrando Programa...");
