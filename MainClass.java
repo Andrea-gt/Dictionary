@@ -15,8 +15,9 @@ public class MainClass {
 			System.out.println("1. Buscar una palabra");
 			System.out.println("2. Agregar una palabra");
 			System.out.println("3. Modificar una palabra");
-			System.out.println("4. Traducir archivo .txt");
-			System.out.println("5. Salir");
+			System.out.println("4. Eliminar una palabra");
+			System.out.println("5. Traducir archivo .txt");
+			System.out.println("6. Salir");
 
 			int option = sn.nextInt();
 			sn.nextLine();
@@ -49,11 +50,31 @@ public class MainClass {
 				
 				break;
 			case 3:
+				System.out.println("Porfavor, ingrese la palabra a modificar en el idioma extranjero ");
+				String editWord = sn.nextLine().toLowerCase();
+				
+				System.out.println("Ahora ingrese la palabra en espanol");
+				String inSpanish = sn.nextLine().toLowerCase();
+				ctr.editWord(editWord, inSpanish);
 				
 				break;
 			case 4:
+				System.out.println("Porfavor, ingrese la palabra a eliminar en el idioma extranjero ");
+				String searchWordElim = sn.nextLine().toLowerCase();
+				
+				if(ctr.SearchWord(searchWordElim) == null) {
+					System.out.println("La palabra no ha sido ingresada aun");
+				}
+				
+				else if(ctr.SearchWord(searchWordElim) != null) {
+					ctr.eliminateWord(searchWordElim);
+				}
 				break;
+				
 			case 5:
+				ctr.readingTxt();
+				break;
+			case 6:
 				System.out.println("Cerrando Programa...");
 				System.exit(0);
 			default:
